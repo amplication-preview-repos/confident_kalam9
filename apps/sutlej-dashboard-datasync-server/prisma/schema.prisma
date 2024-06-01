@@ -1,0 +1,76 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ReportingStatus {
+  approvedAt      DateTime?
+  createdAt       DateTime  @default(now())
+  date            DateTime?
+  deptNo          String?
+  doneBy          String?
+  id              String    @id @default(cuid())
+  investigationId String?
+  isRepeat        Boolean?
+  labNo           String?
+  patientId       String?
+  patientInAt     DateTime?
+  patientOutAt    DateTime?
+  repeatInAt      DateTime?
+  repeatOutAt     DateTime?
+  status          String?
+  testId          String?
+  updatedAt       DateTime  @updatedAt
+}
+
+model DepartmentReport {
+  balance    Int?
+  cash       Int?
+  createdAt  DateTime @default(now())
+  department String?
+  discount   Int?
+  id         String   @id @default(cuid())
+  net        Int?
+  online     Int?
+  quantity   Int?
+  total      Int?
+  updatedAt  DateTime @updatedAt
+}
+
+model CancelledReport {
+  cancelDate    DateTime?
+  cancelledBy   String?
+  cancelReason  String?
+  createdAt     DateTime  @default(now())
+  discount      Float?
+  generatedBy   String?
+  id            String    @id @default(cuid())
+  investigation String?
+  labNo         String?
+  net           Float?
+  paidAmount    Float?
+  patientAge    Int?
+  patientName   String?
+  paymentMode   String?
+  referredBy    String?
+  total         Float?
+  updatedAt     DateTime  @updatedAt
+}
+
+model DiscountReport {
+  approvedBy     String?
+  createdAt      DateTime  @default(now())
+  discount       Float?
+  discountDate   DateTime?
+  discountReason String?
+  id             String    @id @default(cuid())
+  labNo          String?
+  panelName      String?
+  patientName    String?
+  total          Float?
+  updatedAt      DateTime  @updatedAt
+}
